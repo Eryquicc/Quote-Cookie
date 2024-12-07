@@ -14,7 +14,37 @@ local_quotes = [
     "Act as if what you do makes a difference. It does.",
     "The best way to predict the future is to create it.",
     "Happiness is not something ready-made. It comes from your own actions.",
-    "With the new day comes new strength and new thoughts."
+    "With the new day comes new strength and new thoughts.",
+    "The only way to do great work is to love what you do.",
+    "Success is not the key to happiness. Happiness is the key to success.",
+    "In the end, we will remember not the words of our enemies, but the silence of our friends.",
+    "The journey of a thousand miles begins with one step.",
+    "To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment.",
+    "It is never too late to be what you might have been.",
+    "The greatest glory in living lies not in never falling, but in rising every time we fall.",
+    "If you look at what you have in life, you'll always have more. If you look at what you don't have in life, you'll never have enough.",
+    "You must be the change you wish to see in the world.",
+    "Well done is better than well said.",
+    "You will face many defeats in life, but never let yourself be defeated.",
+    "In the end, it's not the years in your life that count. It's the life in your years.",
+    "Many of life's failures are people who did not realize how close they were to success when they gave up.",
+    "You have brains in your head. You have feet in your shoes. You can steer yourself any direction you choose.",
+    "If you want to make your dreams come true, the first thing you have to do is wake up.",
+    "If you really look closely, most overnight successes took a long time.",
+    "I find that the harder I work, the more luck I seem to have.",
+    "The future belongs to those who believe in the beauty of their dreams.",
+    "I have learned over the years that when one's mind is made up, this diminishes fear.",
+    "When something is important enough, you do it even if the odds are not in your favor.",
+    "We cannot solve problems with the kind of thinking we employed when we came up with them.",
+    "First they ignore you, then they laugh at you, then they fight you, then you win.",
+    "It is better to offer no excuse than a bad one.",
+    "If your actions inspire others to dream more, learn more, do more and become more, you are a leader.",
+    "I'm convinced that about half of what separates successful entrepreneurs from the non-successful ones is pure perseverance.",
+    "Don't watch the clock, do what it does. Keep going.",
+    "People often say that motivation doesn't last. Well, neither does bathing. That's why we recommend it daily.",
+    "Your time is limited, so don't waste it living someone else's life.",
+    "Be patient with yourself. Self-growth is tender, it's holy ground. There's no greater investment.",
+    "Always do your best. What you plant now, you will harvest later."
 ]
 
 # Function to fetch a random quote from ZenQuotes API
@@ -122,10 +152,15 @@ class QuoteCookieApp(QWidget):
 
     def choose_background_image(self):
         """Allow the user to choose a background image."""
-        file_dialog = QFileDialog(self)
+        # Create a standalone file dialog without a parent
+        file_dialog = QFileDialog()
         file_dialog.setFileMode(QFileDialog.ExistingFile)
-        file_dialog.setNameFilter("Images (*.png *.jpg *.bmp *.jpeg)")
+        file_dialog.setNameFilter("Images (*.png *.jpg *.jpeg *.bmp)")
         file_dialog.setViewMode(QFileDialog.List)
+
+        # Temporarily disable stylesheets for the dialog
+        file_dialog.setStyleSheet("")  # Clear any inherited styles
+
         if file_dialog.exec_():
             image_path = file_dialog.selectedFiles()[0]
             # Start a worker thread to load and scale the image
